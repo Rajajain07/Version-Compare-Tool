@@ -228,6 +228,10 @@ def map_new_to_old_schema(new_df: pd.DataFrame, old_cols_ordered: List[str]) -> 
       - If OLD has a `dba` column and NEW does NOT have any dba-like column, do NOT populate OLD.dba
         from a generic NEW.name column. This preserves original DBA values in OLD.
       - If NEW contains an explicit dba-like column, it will be used to populate OLD.dba when empty.
+    Special handling for 'dba' column:
+      - If OLD has a `dba` column and NEW does NOT have any dba-like column, do NOT populate OLD.dba
+        from a generic NEW.name column. This preserves original DBA values in OLD.
+      - If NEW contains an explicit dba-like column, it will be used to populate OLD.dba when empty.
     Also: map address1/address_1 -> old address column when possible.
     """
     new_lower = {c.lower(): c for c in new_df.columns}
